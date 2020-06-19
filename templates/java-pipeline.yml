@@ -1,0 +1,19 @@
+include:
+  - project: 'cidevops-gitlabci-service'
+    ref: master
+    file: 'jobs/build.yml'
+    
+variables:
+  BUILD_SHELL: 'mvn clean package -DskipTests'  ##构建命令
+  CACHE_DIR: 'target/'
+  
+cache:
+  paths:
+    - ${CACHE_DIR}
+    
+stages:
+  - build
+  
+build:
+  stage: build
+  extends: .build
